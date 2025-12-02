@@ -1,0 +1,14 @@
+# Function to plot expenses
+def plot_expense_pie():
+    expenses = Expense.load_expenses()
+    if not expenses:
+        messagebox.showwarning("No Data", "No expenses to plot!")
+        return
+
+    categories = [e[0] for e in expenses]
+    amounts = [e[1] for e in expenses]
+
+    plt.figure(figsize=(6, 6))
+    plt.pie(amounts, labels=categories, autopct='%1.1f%%')
+    plt.title("Expense Distribution")
+    plt.show()
